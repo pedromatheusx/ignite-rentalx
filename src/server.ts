@@ -1,11 +1,16 @@
 import express from 'express';
+import swaggerUI from "swagger-ui-express";
+
+import swaggerFile from './swagger.json';
 import { router } from './routes';
-import {categoriesRoutes} from './routes/categories.routes';
-import { specificationsRoutes } from './routes/specifications.routes';
+
+
 
 const app = express();
 
 app.use(express.json())
+
+app.use("/apidocs", swaggerUI.serve, swaggerUI.setup(swaggerFile))
 
 app.use(router);
 
